@@ -43,6 +43,7 @@ tasks.create<TaskPublishCurseForge>("publishCurseForge") {
     mainFile.addJavaVersion("Java ${Versions.JAVA}")
     mainFile.addGameVersion(Versions.MINECRAFT)
     mainFile.addRequirement("fabric-api")
+    mainFile.addRequirement("prickle")
 
     doLast {
         project.ext.set("curse_file_url", "${Properties.CURSE_HOMEPAGE}/files/${mainFile.curseFileId}")
@@ -58,6 +59,7 @@ modrinth {
     uploadFile.set(tasks.remapJar.get())
     dependencies {
         required.project("fabric-api")
+        required.project("prickle")
     }
 }
 tasks.modrinth.get().dependsOn(tasks.remapJar)
