@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "ironsmelters:item/upgrade_stone_to_copper"
+  }
+}

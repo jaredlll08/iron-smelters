@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "tag": "c:glass_blocks"
+    },
+    "I": {
+      "tag": "c:gems/diamond"
+    },
+    "S": {
+      "tag": "c:cobblestones"
+    }
+  },
+  "pattern": [
+    "III",
+    "GSG",
+    "III"
+  ],
+  "result": {
+    "count": 1,
+    "id": "ironsmelters:upgrade_gold_to_diamond"
+  }
+}

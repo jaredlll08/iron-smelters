@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "${MODID}",
+  "name": "${NAME}",
+  "version": "${version}",
+  "environment": "*",
+  "icon": "logo.png",
+  "authors": [
+    "${AUTHOR}"
+  ],
+  "license": "MIT",
+  "contact": {
+    "homepage": "${CURSE_HOMEPAGE}",
+    "sources": "${GIT_REPO}",
+    "issues": "${GIT_REPO}/issues"
+  },
+  "description": "${DESCRIPTION}",
+  "entrypoints": {
+    "main": ["com.blamejared.ironsmelters.IronSmelters"]
+  },
+  "depends": {
+    "fabricloader": ">=${FABRIC_LOADER}",
+    "java": ">=${JAVA}",
+    "minecraft": "${MINECRAFT}"
+  },
+  "custom": {},
+  "mixins": [
+    {
+      "config": "ironsmelters.mixins.json",
+      "environment": "*"
+    },
+    {
+      "config": "ironsmelters.fabric.mixins.json",
+      "environment": "*"
+    }
+  ]
+}

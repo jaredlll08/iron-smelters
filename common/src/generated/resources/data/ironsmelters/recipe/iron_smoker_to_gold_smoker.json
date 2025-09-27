@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "item": "ironsmelters:iron_smoker"
+    },
+    "O": {
+      "tag": "c:ingots/gold"
+    }
+  },
+  "pattern": [
+    "OOO",
+    "OIO",
+    "OOO"
+  ],
+  "result": {
+    "count": 1,
+    "id": "ironsmelters:gold_smoker"
+  }
+}

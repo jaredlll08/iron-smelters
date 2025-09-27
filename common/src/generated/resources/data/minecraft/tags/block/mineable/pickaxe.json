@@ -1,0 +1,19 @@
+{
+  "values": [
+    "ironsmelters:gold_furnace",
+    "ironsmelters:copper_furnace",
+    "ironsmelters:obsidian_furnace",
+    "ironsmelters:copper_blast_furnace",
+    "ironsmelters:gold_blast_furnace",
+    "ironsmelters:gold_smoker",
+    "ironsmelters:copper_smoker",
+    "ironsmelters:iron_furnace",
+    "ironsmelters:diamond_furnace",
+    "ironsmelters:iron_blast_furnace",
+    "ironsmelters:iron_smoker",
+    "ironsmelters:obsidian_smoker",
+    "ironsmelters:diamond_blast_furnace",
+    "ironsmelters:obsidian_blast_furnace",
+    "ironsmelters:diamond_smoker"
+  ]
+}

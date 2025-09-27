@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "tag": "c:glass_blocks"
+    },
+    "I": {
+      "item": "ironsmelters:copper_smoker"
+    },
+    "O": {
+      "tag": "c:ingots/iron"
+    }
+  },
+  "pattern": [
+    "OOO",
+    "GIG",
+    "OOO"
+  ],
+  "result": {
+    "count": 1,
+    "id": "ironsmelters:iron_smoker"
+  }
+}

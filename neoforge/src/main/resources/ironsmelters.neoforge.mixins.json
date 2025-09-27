@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.blamejared.ironsmelters.mixin",
+  "compatibilityLevel": "JAVA_18",
+  "mixins": [
+    "AccessAbstractFurnaceBlockEntityNeoForge"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "ironsmelters.refmap.json"
+}

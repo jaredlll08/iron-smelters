@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "ironsmelters:block/gold_blast_furnace_front",
+    "side": "ironsmelters:block/gold_blast_furnace_side",
+    "top": "ironsmelters:block/gold_blast_furnace_top"
+  }
+}

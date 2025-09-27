@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "item": "minecraft:furnace"
+    },
+    "O": {
+      "tag": "c:ingots/copper"
+    }
+  },
+  "pattern": [
+    "OOO",
+    "OIO",
+    "OOO"
+  ],
+  "result": {
+    "count": 1,
+    "id": "ironsmelters:copper_furnace"
+  }
+}

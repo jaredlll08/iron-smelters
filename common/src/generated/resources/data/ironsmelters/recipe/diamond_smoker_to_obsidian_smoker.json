@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "item": "ironsmelters:diamond_smoker"
+    },
+    "O": {
+      "tag": "c:obsidians/normal"
+    }
+  },
+  "pattern": [
+    "OOO",
+    "OIO",
+    "OOO"
+  ],
+  "result": {
+    "count": 1,
+    "id": "ironsmelters:obsidian_smoker"
+  }
+}

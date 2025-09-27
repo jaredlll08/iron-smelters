@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "textures": {
+    "bottom": "ironsmelters:block/obsidian_smoker_bottom",
+    "front": "ironsmelters:block/obsidian_smoker_front",
+    "side": "ironsmelters:block/obsidian_smoker_side",
+    "top": "ironsmelters:block/obsidian_smoker_top"
+  }
+}

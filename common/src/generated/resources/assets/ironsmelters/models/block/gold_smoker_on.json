@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "textures": {
+    "bottom": "ironsmelters:block/gold_smoker_bottom",
+    "front": "ironsmelters:block/gold_smoker_front_on",
+    "side": "ironsmelters:block/gold_smoker_side",
+    "top": "ironsmelters:block/gold_smoker_top"
+  }
+}
