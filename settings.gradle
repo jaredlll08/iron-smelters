@@ -1,0 +1,31 @@
+pluginManagement {
+    repositories {
+        maven {
+            url = 'https://maven.blamejared.com'
+        }
+        gradlePluginPortal()
+        maven {
+            url = 'https://maven.fabricmc.net/'
+        }
+        exclusiveContent {
+            forRepository {
+                maven {
+                    name = 'Fabric'
+                    url = 'https://maven.fabricmc.net'
+                }
+            }
+            filter {
+                includeGroupAndSubgroups('net.fabricmc')
+            }
+        }
+    }
+}
+plugins {
+    id('org.gradle.toolchains.foojay-resolver-convention') version '1.0.0'
+}
+rootProject.name = 'iron-smelters'
+include('common')
+include('fabric')
+include('neoforge')
+
+includeBuild('build-logic')

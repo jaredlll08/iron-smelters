@@ -18,7 +18,7 @@ dependencies {
     compileOnly("org.spongepowered:mixin:0.8.5")
     compileOnly("io.github.llamalad7:mixinextras-common:0.3.5")
     annotationProcessor("io.github.llamalad7:mixinextras-common:0.3.5")
-    compileOnly("net.darkhax.pricklemc:prickle-common-1.21.1:${Versions.PRICKLE}")
+    compileOnly("net.darkhax.pricklemc:prickle-common-${Versions.MINECRAFT}:${Versions.PRICKLE}")
 }
 
 configurations {
