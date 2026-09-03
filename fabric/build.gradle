@@ -41,7 +41,7 @@ tasks.register('publishCurseForge', TaskPublishCurseForge) {
     dependsOn(tasks.remapJar)
     apiToken = GMUtils.locateProperty(project, 'curseforgeApiToken')
 
-    def mainFile = upload(curse_project_id, tasks.jar.archiveFile)
+    def mainFile = upload(curse_project_id, tasks.remapJar.archiveFile)
     mainFile.changelogType = 'markdown'
     mainFile.changelog = providers.of(GitChangelogValue) {
         parameters.repository.set(git_repo)
@@ -68,7 +68,7 @@ modrinth {
     versionName.set("Fabric-${minecraft}-$version")
     versionType.set('release')
     gameVersions.set([minecraft])
-    uploadFile.set(tasks.jar)
+    uploadFile.set(tasks.remapJar)
     dependencies {
         required.project('fabric-api')
         required.project('prickle')
