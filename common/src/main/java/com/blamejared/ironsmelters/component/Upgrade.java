@@ -11,24 +11,22 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.component.TooltipProvider;
+import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.level.storage.TagValueInput;
 
 import java.util.Collections;
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
-public record Upgrade(Optional<SmelterType> from, SmelterType to, boolean keepData) implements TooltipProvider {
+public record Upgrade(Optional<SmelterType> from, SmelterType to, boolean keepData) {
     
     public static final Predicate<BlockState> PREDICATE = block -> block.getBlock() == Blocks.FURNACE || block.getBlock() == Blocks.SMOKER || block.getBlock() == Blocks.BLAST_FURNACE;
     public static final Codec<Upgrade> CODEC = RecordCodecBuilder.create(
@@ -71,8 +69,8 @@ public record Upgrade(Optional<SmelterType> from, SmelterType to, boolean keepDa
         }
         BlockState newState = map.get(this.to()).get().defaultBlockState();
         if(this.keepData()) {
-            for(Map.Entry<Property<?>, Comparable<?>> entry : blockState.getValues().entrySet()) {
-                newState = newState.setValue(entry.getKey(), Util.uncheck(entry.getValue()));
+            for(Property.Value<?> value : blockState.getValues().collect(Collectors.toSet())) {
+                newState = newState.setValue(value.property(), Util.uncheck(value.value()));
             }
         }
         BlockEntity oldEntity = level.getBlockEntity(pos);
@@ -81,16 +79,10 @@ public record Upgrade(Optional<SmelterType> from, SmelterType to, boolean keepDa
         level.removeBlockEntity(pos);
         level.setBlock(pos, newState, Block.UPDATE_ALL);
         if(this.keepData() && level.getBlockEntity(pos) instanceof AbstractISBlockEntity aisbe && save != null) {
-            aisbe.loadWithComponents(save, registryAccess);
+            aisbe.loadWithComponents(TagValueInput.create(ProblemReporter.DISCARDING, registryAccess, save));
         }
         
         return true;
-    }
-    
-    @Override
-    public void addToTooltip(Item.TooltipContext context, Consumer<Component> tooltipAdder, TooltipFlag tooltipFlag) {
-        
-        tooltipAdder.accept(Component.literal("test"));
     }
     
 }

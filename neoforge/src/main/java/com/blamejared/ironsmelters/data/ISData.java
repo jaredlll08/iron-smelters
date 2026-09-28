@@ -14,24 +14,17 @@ import java.util.concurrent.CompletableFuture;
 public class ISData {
     
     @SubscribeEvent
-    public static void gatherClient(GatherDataEvent event) {
+    public static void gatherClient(GatherDataEvent.Client event) {
         
         DataGenerator generator = event.getGenerator();
         PackOutput output = generator.getPackOutput();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
         
-        generator.addProvider(event.includeServer(), new ISLoot(output, lookupProvider));
-        generator.addProvider(event.includeServer(), new ISBlockTags(output, lookupProvider, event.getExistingFileHelper()));
-        generator.addProvider(event.includeServer(), new ISRecipesProvider(output, lookupProvider));
-        generator.addProvider(
-                event.includeClient(),
-                new ISLangProvider(output)
-        );
-        generator.addProvider(
-                event.includeClient(),
-                new IsItemModelProvider(output, event.getExistingFileHelper())
-        );
-        generator.addProvider(event.includeClient(), new ISBlockStatesProvider(output, event.getExistingFileHelper()));
+        generator.addProvider(true, new ISLangProvider(output));
+        generator.addProvider(true, new ISLoot(output, lookupProvider));
+        generator.addProvider(true, new ISBlockTags(output, lookupProvider));
+        generator.addProvider(true, new ISRecipesProvider.Runner(output, lookupProvider));
+        generator.addProvider(true, new ISModelProvider(output));
     }
     
 }

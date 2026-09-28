@@ -8,6 +8,7 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -40,7 +41,13 @@ public class ISSmokerBlock extends ISAbstractFurnaceBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
         
-        return level.isClientSide ? null : createTickerHelper(blockEntityType, ISBlockEntityTypes.SMOKER.get(), AbstractISBlockEntity::serverTick);
+        if(level instanceof ServerLevel sl) {
+            return createTickerHelper(blockEntityType, ISBlockEntityTypes.SMOKER.get(), (_, blockPos, blockState1, itemStacks) -> {
+                AbstractISBlockEntity.serverTick(sl, blockPos, blockState1, itemStacks);
+            });
+            
+        }
+        return null;
     }
     
     @Override

@@ -6,6 +6,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.BlastFurnaceMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.block.entity.FuelValues;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class ISBlastFurnaceBlockEntity extends AbstractISBlockEntity {
@@ -16,9 +17,9 @@ public class ISBlastFurnaceBlockEntity extends AbstractISBlockEntity {
     }
     
     @Override
-    protected int getBurnDuration(ItemStack fuel) {
+    protected int getBurnDuration(FuelValues fuelValues, ItemStack fuel) {
         
-        return super.getBurnDuration(fuel) / 2;
+        return super.getBurnDuration(fuelValues, fuel) / 2;
     }
     
     @Override

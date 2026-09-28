@@ -13,9 +13,9 @@ import com.blamejared.ironsmelters.registry.RegistryObject;
 import com.google.auto.service.AutoService;
 import com.google.common.collect.ImmutableMap;
 import com.mojang.datafixers.util.Pair;
-import net.minecraft.Util;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.Util;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 
@@ -39,9 +39,9 @@ public class ISItems implements IRegister {
         ImmutableMap.Builder<SmelterType, RegistryObject<Item>> map = ImmutableMap.builder();
         
         for(SmelterType smelterType : SmelterType.ALL.values()) {
-            map.put(smelterType, ITEMS.blockItem(smelterType.id()
-                    .getPath() + "_furnace", ISBlocks.FURNACES.get(smelterType), properties -> properties));
-            
+            map.put(smelterType, ITEMS.item(smelterType.id()
+                    .getPath() + "_furnace", properties -> new ISFurnaceItem(ISBlocks.FURNACES.get(smelterType)
+                    .get(), properties)));
         }
         return map.build();
     });
@@ -50,8 +50,9 @@ public class ISItems implements IRegister {
         ImmutableMap.Builder<SmelterType, RegistryObject<Item>> map = ImmutableMap.builder();
         
         for(SmelterType smelterType : SmelterType.ALL.values()) {
-            map.put(smelterType, ITEMS.blockItem(smelterType.id()
-                    .getPath() + "_blast_furnace", ISBlocks.BLAST_FURNACES.get(smelterType), properties -> properties));
+            map.put(smelterType, ITEMS.item(smelterType.id()
+                    .getPath() + "_blast_furnace", properties -> new ISFurnaceItem(ISBlocks.BLAST_FURNACES.get(smelterType)
+                    .get(), properties)));
             
         }
         return map.build();
@@ -61,8 +62,9 @@ public class ISItems implements IRegister {
         ImmutableMap.Builder<SmelterType, RegistryObject<Item>> map = ImmutableMap.builder();
         
         for(SmelterType smelterType : SmelterType.ALL.values()) {
-            map.put(smelterType, ITEMS.blockItem(smelterType.id()
-                    .getPath() + "_smoker", ISBlocks.SMOKER.get(smelterType), properties -> properties));
+            map.put(smelterType, ITEMS.item(smelterType.id()
+                    .getPath() + "_smoker", properties -> new ISFurnaceItem(ISBlocks.SMOKER.get(smelterType)
+                    .get(), properties)));
             
         }
         return map.build();

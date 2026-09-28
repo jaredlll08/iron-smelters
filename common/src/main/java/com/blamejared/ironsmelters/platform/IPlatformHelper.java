@@ -21,10 +21,6 @@ public interface IPlatformHelper {
     
     boolean isModLoaded(String modId);
     
-    <T extends BlockEntity> BlockEntityType.Builder<T> blockEntityBuilder(BiFunction<BlockPos, BlockState, T> factory, Block... validBlocks);
-    
-    boolean burn(RegistryAccess registryAccess, RecipeHolder<?> recipe, NonNullList<ItemStack> inventory, int maxStackSize, AbstractFurnaceBlockEntity furnace);
-    
-    boolean canBurn(RegistryAccess registryAccess, @Nullable RecipeHolder<?> recipe, NonNullList<ItemStack> inventory, int maxStackSize, AbstractFurnaceBlockEntity entity);
+    <T extends BlockEntity> BlockEntityType<T> blockEntityBuilder(BiFunction<BlockPos, BlockState, T> factory, Block... validBlocks);
     
 }

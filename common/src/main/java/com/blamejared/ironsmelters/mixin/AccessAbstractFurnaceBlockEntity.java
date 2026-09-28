@@ -1,9 +1,10 @@
 package com.blamejared.ironsmelters.mixin;
 
+import net.minecraft.core.NonNullList;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
@@ -12,34 +13,40 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 @Mixin(AbstractFurnaceBlockEntity.class)
 public interface AccessAbstractFurnaceBlockEntity {
     
-    @Invoker("getTotalCookTime")
-    static int callGetTotalCookTime(Level level, AbstractFurnaceBlockEntity blockEntity) {throw new UnsupportedOperationException();}
+    @Invoker
+    static boolean callCanBurn(NonNullList<ItemStack> items, int maxStackSize, ItemStack burnResult) {throw new UnsupportedOperationException();}
     
-    @Invoker("isLit")
-    boolean callIsLit();
+    @Invoker
+    static void callBurn(NonNullList<ItemStack> items, ItemStack inputItemStack, ItemStack result) {throw new UnsupportedOperationException();}
+    
+    @Invoker
+    static void callConsumeFuel(NonNullList<ItemStack> items, ItemStack fuel) {throw new UnsupportedOperationException();}
     
     @Accessor("quickCheck")
     RecipeManager.CachedCheck<SingleRecipeInput, ? extends AbstractCookingRecipe> getQuickCheck();
     
-    @Accessor("litTime")
-    int getLitTime();
-    
-    @Accessor("litTime")
-    void setLitTime(int litTime);
-    
-    @Accessor("litDuration")
-    void setLitDuration(int litDuration);
-    
-    @Accessor("cookingProgress")
-    int getCookingProgress();
-    
-    @Accessor("cookingProgress")
-    void setCookingProgress(int cookingProgress);
-    
-    @Accessor("cookingTotalTime")
+    @Accessor
     int getCookingTotalTime();
     
-    @Accessor("cookingTotalTime")
+    @Accessor
     void setCookingTotalTime(int cookingTotalTime);
+    
+    @Accessor
+    int getLitTimeRemaining();
+    
+    @Accessor
+    void setLitTimeRemaining(int litTimeRemaining);
+    
+    @Accessor
+    int getLitTotalTime();
+    
+    @Accessor
+    void setLitTotalTime(int litTotalTime);
+    
+    @Accessor
+    int getCookingTimer();
+    
+    @Accessor
+    void setCookingTimer(int cookingTimer);
     
 }

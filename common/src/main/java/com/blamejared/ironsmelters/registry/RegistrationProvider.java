@@ -3,8 +3,8 @@ package com.blamejared.ironsmelters.registry;
 import com.blamejared.ironsmelters.Util;
 import com.blamejared.ironsmelters.platform.Services;
 import net.minecraft.core.Registry;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -78,54 +78,54 @@ public interface RegistrationProvider<T> {
     default <I extends T> RegistryObject<I> block(String name, Function<Block.Properties, ? extends I> supplier) {
         
         return register(name, () -> {
-            ResourceLocation location = ResourceLocation.fromNamespaceAndPath(getModId(), name);
+            Identifier location = Identifier.fromNamespaceAndPath(getModId(), name);
             ResourceKey<Block> rk = ResourceKey.create(Util.uncheck(resourceKey()), location);
-            return supplier.apply(Block.Properties.of());
+            return supplier.apply(Block.Properties.of().setId(rk));
         });
     }
     
     default <I extends T> RegistryObject<I> block(String name, Function<Block.Properties, ? extends I> supplier, BlockBehaviour.Properties defaultProperties) {
         
         return register(name, () -> {
-            ResourceLocation location = ResourceLocation.fromNamespaceAndPath(getModId(), name);
+            Identifier location = Identifier.fromNamespaceAndPath(getModId(), name);
             ResourceKey<Block> rk = ResourceKey.create(Util.uncheck(resourceKey()), location);
-            return supplier.apply(defaultProperties);
+            return supplier.apply(defaultProperties.setId(rk));
         });
     }
     
     default <I extends T> RegistryObject<I> item(String name, Function<Item.Properties, ? extends I> supplier) {
         
         return register(name, () -> {
-            ResourceLocation location = ResourceLocation.fromNamespaceAndPath(getModId(), name);
+            Identifier location = Identifier.fromNamespaceAndPath(getModId(), name);
             ResourceKey<Item> rk = ResourceKey.create(Util.uncheck(resourceKey()), location);
-            return supplier.apply(new Item.Properties());
+            return supplier.apply(new Item.Properties().setId(rk));
         });
     }
     
     default <I extends T> RegistryObject<I> item(String name, Function<Item.Properties, ? extends I> supplier, Item.Properties defaultProperties) {
         
         return register(name, () -> {
-            ResourceLocation location = ResourceLocation.fromNamespaceAndPath(getModId(), name);
+            Identifier location = Identifier.fromNamespaceAndPath(getModId(), name);
             ResourceKey<Item> rk = ResourceKey.create(Util.uncheck(resourceKey()), location);
-            return supplier.apply(defaultProperties);
+            return supplier.apply(defaultProperties.setId(rk));
         });
     }
     
     default <I extends T> RegistryObject<I> blockItem(String name, RegistryObject<Block> block, UnaryOperator<Item.Properties> supplier) {
         
         return register(name, () -> {
-            ResourceLocation location = ResourceLocation.fromNamespaceAndPath(getModId(), name);
+            Identifier location = Identifier.fromNamespaceAndPath(getModId(), name);
             ResourceKey<Item> rk = ResourceKey.create(Util.uncheck(resourceKey()), location);
-            return Util.uncheck(new BlockItem(block.get(), supplier.apply(new Item.Properties())));
+            return Util.uncheck(new BlockItem(block.get(), supplier.apply(new Item.Properties().setId(rk))));
         });
     }
     
     default <I extends T> RegistryObject<I> blockItem(String name, RegistryObject<Block> block, UnaryOperator<Item.Properties> supplier, Item.Properties defaultProperties) {
         
         return register(name, () -> {
-            ResourceLocation location = ResourceLocation.fromNamespaceAndPath(getModId(), name);
+            Identifier location = Identifier.fromNamespaceAndPath(getModId(), name);
             ResourceKey<Item> rk = ResourceKey.create(Util.uncheck(resourceKey()), location);
-            return Util.uncheck(new BlockItem(block.get(), supplier.apply(defaultProperties)));
+            return Util.uncheck(new BlockItem(block.get(), supplier.apply(defaultProperties).setId(rk)));
         });
     }
     

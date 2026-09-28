@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "I": {
-      "item": "ironsmelters:diamond_blast_furnace"
-    },
-    "O": {
-      "tag": "c:obsidians/normal"
-    }
+    "I": "ironsmelters:diamond_blast_furnace",
+    "O": "#c:obsidians/normal"
   },
   "pattern": [
     "OOO",
@@ -15,7 +11,6 @@
     "OOO"
   ],
   "result": {
-    "count": 1,
     "id": "ironsmelters:obsidian_blast_furnace"
   }
 }

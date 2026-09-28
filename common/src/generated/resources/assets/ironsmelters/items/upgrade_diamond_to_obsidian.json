@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "ironsmelters:item/upgrade_diamond_to_obsidian"
+  }
+}

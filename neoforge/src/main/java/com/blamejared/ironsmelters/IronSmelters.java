@@ -1,7 +1,7 @@
 package com.blamejared.ironsmelters;
 
 
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -26,7 +26,7 @@ public class IronSmelters {
                 return;
             }
             if(ISCommon.interact(event.getPlayer(), event.getLevel(), event.getItemStack(), event.getPos())) {
-                event.cancelWithResult(ItemInteractionResult.SUCCESS);
+                event.cancelWithResult(InteractionResult.SUCCESS);
             }
         });
         

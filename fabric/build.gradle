@@ -5,24 +5,20 @@ import net.darkhax.curseforgegradle.TaskPublishCurseForge
 
 plugins {
     id 'com.blamejared.loader-plugin'
-    id 'fabric-loom'
+    id 'net.fabricmc.fabric-loom'
 }
 
 dependencies {
     minecraft "com.mojang:minecraft:${minecraft}"
-    mappings(loom.officialMojangMappings())
-    modImplementation "net.fabricmc:fabric-loader:${fabric_loader}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric}"
+    implementation "net.fabricmc:fabric-loader:${fabric_loader}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${fabric}"
 
-    modCompileOnly("mezz.jei:jei-${minecraft}-fabric-api:${jei_version}")
-    modRuntimeOnly("mezz.jei:jei-${minecraft}-fabric:${jei_version}")
-    modImplementation("net.darkhax.pricklemc:prickle-fabric-${minecraft}:${prickle_version}")
+    compileOnly("mezz.jei:jei-${minecraft}-fabric-api:${jei_version}")
+    runtimeOnly("mezz.jei:jei-${minecraft}-fabric:${jei_version}")
+    implementation("net.darkhax.pricklemc:prickle-fabric-${minecraft}:${prickle_version}")
 }
 
 loom {
-    mixin {
-        defaultRefmapName.set("${modid}.refmap.json")
-    }
     def aw = project(':common').file("src/main/resources/${modid}.accesswidener")
     if (aw.exists()) {
         accessWidenerPath.set(aw)
@@ -38,10 +34,10 @@ loom {
 }
 
 tasks.register('publishCurseForge', TaskPublishCurseForge) {
-    dependsOn(tasks.remapJar)
+    dependsOn(tasks.jar)
     apiToken = GMUtils.locateProperty(project, 'curseforgeApiToken')
 
-    def mainFile = upload(curse_project_id, tasks.remapJar.archiveFile)
+    def mainFile = upload(curse_project_id, tasks.jar.archiveFile)
     mainFile.changelogType = 'markdown'
     mainFile.changelog = providers.of(GitChangelogValue) {
         parameters.repository.set(git_repo)
@@ -68,13 +64,13 @@ modrinth {
     versionName.set("Fabric-${minecraft}-$version")
     versionType.set('release')
     gameVersions.set([minecraft])
-    uploadFile.set(tasks.remapJar)
+    uploadFile.set(tasks.jar)
     dependencies {
         required.project('fabric-api')
         required.project('prickle')
     }
 }
-tasks.modrinth.dependsOn(tasks.remapJar)
+tasks.modrinth.dependsOn(tasks.jar)
 
 // Implement mcgradleconventions loader attribute
 def loaderAttribute = Attribute.of('io.github.mcgradleconventions.loader', String)

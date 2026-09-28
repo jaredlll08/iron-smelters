@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "G": {
-      "tag": "c:glass_blocks"
-    },
-    "I": {
-      "item": "ironsmelters:copper_blast_furnace"
-    },
-    "O": {
-      "tag": "c:ingots/iron"
-    }
+    "G": "#c:glass_blocks",
+    "I": "ironsmelters:copper_blast_furnace",
+    "O": "#c:ingots/iron"
   },
   "pattern": [
     "OOO",
@@ -18,7 +12,6 @@
     "OOO"
   ],
   "result": {
-    "count": 1,
     "id": "ironsmelters:iron_blast_furnace"
   }
 }

@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "ironsmelters:item/upgrade_stone_to_copper"
+  }
+}

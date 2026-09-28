@@ -9,7 +9,6 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -22,13 +21,13 @@ import java.util.function.Supplier;
 
 public class ISRecipesProvider extends RecipeProvider {
     
-    public ISRecipesProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+    protected ISRecipesProvider(final HolderLookup.Provider registries, final RecipeOutput output) {
         
-        super(output, provider);
+        super(registries, output);
     }
     
     @Override
-    protected void buildRecipes(RecipeOutput output) {
+    protected void buildRecipes() {
         
         furnace(output, "furnace", "copper", SmelterType.COPPER, Tags.Items.INGOTS_COPPER, Items.FURNACE);
         cheapOutline(output, "copper_furnace", "iron", "furnace", ISItems.FURNACES.get(SmelterType.IRON), Tags.Items.INGOTS_IRON, ISItems.FURNACES.get(SmelterType.COPPER)
@@ -64,7 +63,7 @@ public class ISRecipesProvider extends RecipeProvider {
         smoker(output, "diamond_smoker", "obsidian", SmelterType.OBSIDIAN, Tags.Items.OBSIDIANS_NORMAL, ISItems.SMOKERS.get(SmelterType.DIAMOND)
                 .get());
         
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ISItems.UPGRADES.get(Pair.of(SmelterType.COPPER, Optional.empty()))
+        this.shaped(RecipeCategory.DECORATIONS, ISItems.UPGRADES.get(Pair.of(SmelterType.COPPER, Optional.empty()))
                         .get())
                 .define('I', Tags.Items.INGOTS_COPPER)
                 .define('S', Tags.Items.COBBLESTONES)
@@ -73,9 +72,9 @@ public class ISRecipesProvider extends RecipeProvider {
                 .pattern("III")
                 .unlockedBy("has_copper", has(Tags.Items.INGOTS_COPPER))
                 .unlockedBy("has_furnace", has(Tags.Items.PLAYER_WORKSTATIONS_FURNACES))
-                .save(output, ISConstants.rl("stone_to_copper_upgrade"));
+                .save(output, ISConstants.sid("stone_to_copper_upgrade"));
         
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ISItems.UPGRADES.get(Pair.of(SmelterType.IRON, Optional.empty()))
+        this.shaped(RecipeCategory.DECORATIONS, ISItems.UPGRADES.get(Pair.of(SmelterType.IRON, Optional.empty()))
                         .get())
                 .define('I', Tags.Items.INGOTS_IRON)
                 .define('S', Tags.Items.COBBLESTONES)
@@ -84,9 +83,9 @@ public class ISRecipesProvider extends RecipeProvider {
                 .pattern("III")
                 .unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON))
                 .unlockedBy("has_furnace", has(Tags.Items.PLAYER_WORKSTATIONS_FURNACES))
-                .save(output, ISConstants.rl("stone_to_iron_upgrade"));
+                .save(output, ISConstants.sid("stone_to_iron_upgrade"));
         
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ISItems.UPGRADES.get(Pair.of(SmelterType.IRON, Optional.of(SmelterType.COPPER)))
+        this.shaped(RecipeCategory.DECORATIONS, ISItems.UPGRADES.get(Pair.of(SmelterType.IRON, Optional.of(SmelterType.COPPER)))
                         .get())
                 .define('I', Tags.Items.INGOTS_IRON)
                 .define('S', Tags.Items.COBBLESTONES)
@@ -96,9 +95,9 @@ public class ISRecipesProvider extends RecipeProvider {
                 .pattern("III")
                 .unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON))
                 .unlockedBy("has_furnace", has(Tags.Items.PLAYER_WORKSTATIONS_FURNACES))
-                .save(output, ISConstants.rl("copper_to_iron_upgrade"));
+                .save(output, ISConstants.sid("copper_to_iron_upgrade"));
         
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ISItems.UPGRADES.get(Pair.of(SmelterType.GOLD, Optional.of(SmelterType.IRON)))
+        this.shaped(RecipeCategory.DECORATIONS, ISItems.UPGRADES.get(Pair.of(SmelterType.GOLD, Optional.of(SmelterType.IRON)))
                         .get())
                 .define('I', Tags.Items.INGOTS_GOLD)
                 .define('S', Tags.Items.COBBLESTONES)
@@ -107,9 +106,9 @@ public class ISRecipesProvider extends RecipeProvider {
                 .pattern("III")
                 .unlockedBy("has_gold", has(Tags.Items.INGOTS_GOLD))
                 .unlockedBy("has_furnace", has(Tags.Items.PLAYER_WORKSTATIONS_FURNACES))
-                .save(output, ISConstants.rl("iron_to_gold_upgrade"));
+                .save(output, ISConstants.sid("iron_to_gold_upgrade"));
         
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ISItems.UPGRADES.get(Pair.of(SmelterType.DIAMOND, Optional.of(SmelterType.GOLD)))
+        this.shaped(RecipeCategory.DECORATIONS, ISItems.UPGRADES.get(Pair.of(SmelterType.DIAMOND, Optional.of(SmelterType.GOLD)))
                         .get())
                 .define('I', Tags.Items.GEMS_DIAMOND)
                 .define('S', Tags.Items.COBBLESTONES)
@@ -119,9 +118,9 @@ public class ISRecipesProvider extends RecipeProvider {
                 .pattern("III")
                 .unlockedBy("has_diamond", has(Tags.Items.GEMS_DIAMOND))
                 .unlockedBy("has_furnace", has(Tags.Items.PLAYER_WORKSTATIONS_FURNACES))
-                .save(output, ISConstants.rl("gold_to_diamond_upgrade"));
+                .save(output, ISConstants.sid("gold_to_diamond_upgrade"));
         
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ISItems.UPGRADES.get(Pair.of(SmelterType.OBSIDIAN, Optional.of(SmelterType.DIAMOND)))
+        this.shaped(RecipeCategory.DECORATIONS, ISItems.UPGRADES.get(Pair.of(SmelterType.OBSIDIAN, Optional.of(SmelterType.DIAMOND)))
                         .get())
                 .define('I', Tags.Items.OBSIDIANS_NORMAL)
                 .define('S', Tags.Items.COBBLESTONES)
@@ -130,7 +129,7 @@ public class ISRecipesProvider extends RecipeProvider {
                 .pattern("III")
                 .unlockedBy("has_obsidian", has(Tags.Items.OBSIDIANS_NORMAL))
                 .unlockedBy("has_furnace", has(Tags.Items.PLAYER_WORKSTATIONS_FURNACES))
-                .save(output, ISConstants.rl("diamond_to_obsidian_upgrade"));
+                .save(output, ISConstants.sid("diamond_to_obsidian_upgrade"));
     }
     
     
@@ -151,19 +150,19 @@ public class ISRecipesProvider extends RecipeProvider {
     
     private void outline(RecipeOutput recipeOutput, String from, String to, String type, Supplier<Item> output, TagKey<Item> ingot, ItemLike input) {
         
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output.get())
+        this.shaped(RecipeCategory.DECORATIONS, output.get())
                 .define('O', ingot)
                 .define('I', input)
                 .pattern("OOO")
                 .pattern("OIO")
                 .pattern("OOO")
                 .unlockedBy("has_" + to, has(ingot))
-                .save(recipeOutput, ISConstants.rl(from + "_to_" + to + "_" + type));
+                .save(recipeOutput, ISConstants.sid(from + "_to_" + to + "_" + type));
     }
     
     private void cheapOutline(RecipeOutput recipeOutput, String from, String to, String type, Supplier<Item> output, TagKey<Item> ingot, ItemLike input) {
         
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output.get())
+        this.shaped(RecipeCategory.DECORATIONS, output.get())
                 .define('O', ingot)
                 .define('G', Tags.Items.GLASS_BLOCKS)
                 .define('I', input)
@@ -171,7 +170,28 @@ public class ISRecipesProvider extends RecipeProvider {
                 .pattern("GIG")
                 .pattern("OOO")
                 .unlockedBy("has_" + to, has(ingot))
-                .save(recipeOutput, ISConstants.rl(from + "_to_" + to + "_" + type));
+                .save(recipeOutput, ISConstants.sid(from + "_to_" + to + "_" + type));
+    }
+    
+    public static class Runner extends RecipeProvider.Runner {
+        
+        public Runner(final PackOutput output, final CompletableFuture<HolderLookup.Provider> lookupProvider) {
+            
+            super(output, lookupProvider);
+        }
+        
+        @Override
+        protected RecipeProvider createRecipeProvider(final HolderLookup.Provider provider, final RecipeOutput output) {
+            
+            return new ISRecipesProvider(provider, output);
+        }
+        
+        @Override
+        public String getName() {
+            
+            return ISConstants.MODID + " Recipe Provider";
+        }
+        
     }
     
 }

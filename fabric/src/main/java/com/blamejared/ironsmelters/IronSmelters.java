@@ -1,8 +1,8 @@
 package com.blamejared.ironsmelters;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.CreativeModeTabs;
 
@@ -19,9 +19,9 @@ public class IronSmelters implements ModInitializer {
             }
             return InteractionResult.PASS;
         });
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS).register(entries -> {
-            ISCommon.registerCreativeTabs(entries::accept);
-        });
+        
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS)
+                .register(entries -> ISCommon.registerCreativeTabs(entries::accept));
     }
     
 }

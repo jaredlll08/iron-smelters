@@ -20,20 +20,17 @@ public class ISBlockEntityTypes implements IRegister {
     public static final RegistryObject<BlockEntityType<ISFurnaceBlockEntity>> FURNACE = BLOCK_ENTITY_TYPES.register("furnace", () -> Services.PLATFORM.blockEntityBuilder(ISFurnaceBlockEntity::new, ISBlocks.FURNACES.values()
                     .stream()
                     .map(RegistryObject::get)
-                    .toArray(Block[]::new))
-            .build(null));
+                    .toArray(Block[]::new)));
     
     public static final RegistryObject<BlockEntityType<ISBlastFurnaceBlockEntity>> BLAST_FURNACE = BLOCK_ENTITY_TYPES.register("blast_furnace", () -> Services.PLATFORM.blockEntityBuilder(ISBlastFurnaceBlockEntity::new, ISBlocks.BLAST_FURNACES.values()
                     .stream()
                     .map(RegistryObject::get)
-                    .toArray(Block[]::new))
-            .build(null));
+                    .toArray(Block[]::new)));
     
     
     public static final RegistryObject<BlockEntityType<ISSmokerBlockEntity>> SMOKER = BLOCK_ENTITY_TYPES.register("smoker", () -> Services.PLATFORM.blockEntityBuilder(ISSmokerBlockEntity::new, ISBlocks.SMOKER.values()
                     .stream()
                     .map(RegistryObject::get)
-                    .toArray(Block[]::new))
-            .build(null));
+                    .toArray(Block[]::new)));
     
 }

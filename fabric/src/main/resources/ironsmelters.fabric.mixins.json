@@ -4,10 +4,8 @@
   "package": "com.blamejared.ironsmelters.mixin",
   "compatibilityLevel": "JAVA_18",
   "mixins": [
-    "AccessAbstractFurnaceBlockEntityFabric"
   ],
   "injectors": {
     "defaultRequire": 1
-  },
-  "refmap": "ironsmelters.refmap.json"
+  }
 }

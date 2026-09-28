@@ -24,6 +24,7 @@ public class ISLangProvider extends LanguageProvider {
         this.add("itemGroup.ironsmelters", "Iron Smelters");
         this.add("ironsmelters.upgrade.text", "Upgrades a Smelter from %s to %s");
         this.add("ironsmelters.smeltertype.default", "Stone");
+        this.add("ironsmelters.smelter.speed_text", "Smelts items %sx times faster than a %s.");
         
         for(SmelterType smelterType : SmelterType.ALL.values()) {
             this.add("ironsmelters.smeltertype." + smelterType.id(), smelterType.displayName());
@@ -49,16 +50,19 @@ public class ISLangProvider extends LanguageProvider {
     private void furnace(RegistryObject<Block> block, String name) {
         
         this.addBlock(block, "%s Furnace".formatted(name));
+        this.add(block.get().asItem(),"%s Furnace".formatted(name));
     }
     
     private void blastFurnace(RegistryObject<Block> block, String name) {
         
         this.addBlock(block, "%s Blast Furnace".formatted(name));
+        this.add(block.get().asItem(),"%s Blast Furnace".formatted(name));
     }
     
     private void smoker(RegistryObject<Block> block, String name) {
         
         this.addBlock(block, "%s Smoker".formatted(name));
+        this.add(block.get().asItem(),"%s Smoker".formatted(name));
     }
     
 }

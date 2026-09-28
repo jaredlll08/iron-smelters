@@ -23,8 +23,8 @@ neoForge {
             server()
             programArgument('--nogui')
         }
-        register('data') {
-            data()
+        register('clientData') {
+            clientData()
             programArguments.addAll('--mod', modid, '--all', '--output', rootProject.file('common/src/generated/resources/').getAbsolutePath(), '--existing', rootProject.file('common/src/main/resources/').getAbsolutePath())
         }
     }
